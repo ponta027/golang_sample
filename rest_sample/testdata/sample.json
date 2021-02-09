@@ -1,0 +1,90 @@
+{
+    "issues": [
+        {
+            "author": {
+                "id": 135455,
+                "name": "Solt\u00e9sz Andr\u00e1s"
+            },
+            "category": {
+                "id": 2,
+                "name": "Issues"
+            },
+            "created_on": "2021-02-07T11:30:18Z",
+            "custom_fields": [
+                {
+                    "id": 2,
+                    "name": "Resolution",
+                    "value": ""
+                }
+            ],
+            "description": "Currently, the issue editing form will not display the description of the task as it first appears and requires the user to click on a link to display the description and start editing it.\r\n\r\nThis is a big usability problem and no other, modern, notable task/issue manager implements it this way. \r\n\r\nI have been working with Redmine for many years in multiple settings (at different companies) and I can safely say that it unnecessarily slows down issue editing in a very big percentage of cases. \r\n\r\nRequest: Display the description editor field immediately when the editing of the issue starts, together with all of the other editing fields.",
+            "done_ratio": 0,
+            "id": 34695,
+            "priority": {
+                "id": 4,
+                "name": "Normal"
+            },
+            "project": {
+                "id": 1,
+                "name": "Redmine"
+            },
+            "status": {
+                "id": 1,
+                "name": "New"
+            },
+            "subject": "Allow editing the issue description immediately (issue editing form)",
+            "tracker": {
+                "id": 2,
+                "name": "Feature"
+            },
+            "updated_on": "2021-02-07T11:30:18Z"
+        },
+        {
+            "author": {
+                "id": 435068,
+                "name": "Yasuhiro Sakuramoto"
+            },
+            "category": {
+                "id": 34,
+                "name": "Gantt"
+            },
+            "created_on": "2021-02-07T11:11:52Z",
+            "custom_fields": [
+                {
+                    "id": 2,
+                    "name": "Resolution",
+                    "value": ""
+                },
+                {
+                    "id": 4,
+                    "name": "Affected version",
+                    "value": "160"
+                }
+            ],
+            "description": "Example:\r\n\r\n1. Initial state.\r\n!initial.png!\r\n\r\n2. The bar will disappear when collapsing Version1 directly under Project1.\r\n!collapsed_error.png!\r\n\r\nI suspect that the cause is in the following line.\r\nsource:/branches/4.1-stable/public/javascripts/gantt.js@19434#L262",
+            "done_ratio": 0,
+            "id": 34694,
+            "priority": {
+                "id": 4,
+                "name": "Normal"
+            },
+            "project": {
+                "id": 1,
+                "name": "Redmine"
+            },
+            "status": {
+                "id": 9,
+                "name": "Confirmed"
+            },
+            "subject": "Collapse/expand of Gantt chart does not work properly when multiple bars of the same shared version are displayed.",
+            "tracker": {
+                "id": 1,
+                "name": "Defect"
+            },
+            "updated_on": "2021-02-09T07:48:24Z"
+        }
+    ],
+    "limit": 2,
+    "offset": 0,
+    "total_count": 4832
+}
