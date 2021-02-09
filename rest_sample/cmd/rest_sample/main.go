@@ -6,6 +6,7 @@ import (
 	"fmt"
 	"io/ioutil"
 	"net/http"
+    "ponta027.dip.jp/helloworld"
 )
 
 type Statuses struct{
@@ -56,4 +57,5 @@ func main() {
 		fmt.Printf("[%s]#%d[%s],DoneRatiod=%d,subject=%s", p.Tracker.Name, p.Id, p.Status.Name,p.DoneRatio, p.Subject)
 		fmt.Println("")
 	}
+    helloworld.Hello()
 }
