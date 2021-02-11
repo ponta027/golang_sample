@@ -39,6 +39,7 @@ func Request(configPath string) {
 	config, er := parseConfig(configPath)
 	if er != nil {
 		fmt.Println(er)
+        os.Exit(1)
 	}
 
 	result, err := request(config.BaseUrl)
@@ -68,7 +69,7 @@ func existFile(tpath string) bool {
 /** */
 func convertTemplate(root *Root, tpath string) error{
     if !existFile(tpath) {
-        return fmt.Errorf(" file not exist %s",tpath)
+        return fmt.Errorf("file not exist %s",tpath)
     }
 	tmpl := template.Must(template.ParseFiles(tpath))
 	if err := tmpl.Execute(os.Stdout, root); err != nil {

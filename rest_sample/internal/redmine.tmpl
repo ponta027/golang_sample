@@ -1,3 +1,5 @@
-{{ range $index,$v := .Issues }}
+{{/* */ -}}
+{{ range $index,$v := .Issues -}}
 {{ $v.Tracker.Name }} #{{$v.Id}}    {{$v.Status.Name}}  {{$v.Subject}}
 {{ end }}
+{{/* */ -}}
