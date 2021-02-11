@@ -1,0 +1,4 @@
+{
+    "templatePath": "./internal/redmine.tmpl" ,
+    "base_url": "https://www.redmine.org/projects/redmine/issues.json?limit=2"
+}

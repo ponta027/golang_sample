@@ -4,6 +4,7 @@ REVISION := $(shell git rev-parse --short HEAD)
 LDFLAGS := "-X main.revision=$(REVISION)"
 
 
+
 ## install dependencies
 .PHONY: deps
 deps:
@@ -14,13 +15,18 @@ deps:
 devel-deps: deps
 	go get github.com/jessevdk/go-flags
 
-# build binary
 bin/%: cmd/%/main.go 
 	go build -ldflags $(LDFLAGS) -o $@ $<
 
-## build binary
+## build binary 
+## ex. cross compile  GOOS=linux GOARCH=arm64 make build
 .PHONY: build
 build: bin/rest_sample
+
+test: 
+	go test -v ponta027.dip.jp/rest -coverprofile=artifact/cover.out	¥
+	go tool cover -html=artifact/cover.out -o artifact/cover.html
+
 
 ## show help
 .PHONY: help
@@ -31,4 +37,4 @@ help:
 ## clean
 .PHONY: clean
 clean:
-	rm bin/helloworld
+	rm bin/*
