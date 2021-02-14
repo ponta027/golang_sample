@@ -74,6 +74,7 @@ func convertTemplate(root *Root, tpath string) error{
 	tmpl := template.Must(template.ParseFiles(tpath))
 	if err := tmpl.Execute(os.Stdout, root); err != nil {
 		log.Fatal(err)
+        return err
 	}
     return nil
 }
