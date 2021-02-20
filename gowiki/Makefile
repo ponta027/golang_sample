@@ -1,13 +1,17 @@
+NAME :=gowiki 
+VERSION := $(gobump show -r )
+REVISION := $(shell git rev-parse --short HEAD)
+LDFLAGS := "-X main.revision=$(REVISION)"
 
 
 
-build:
-	go build -o bin/main  cmd/gowiki/main.go
 
-run:
-	bin/main
+bin/%: cmd/%/main.go
+	go build -ldflags $(LDFLAGS) -o $@ $<
+
+build : bin/gowiki
 
 
 
 clean:
-	rm bin/main
+	rm bin/*
