@@ -2,6 +2,7 @@ package rest
 
 import (
 	"encoding/json"
+	"fmt"
 	"io/ioutil"
 	"log"
 	"net/http"
@@ -38,7 +39,7 @@ func Request(configPath string) {
 	config, er := parseConfig(configPath)
 	if er != nil {
 		fmt.Println(er)
-        os.Exit(1)
+		os.Exit(1)
 	}
 
 	result, err := request(config.BaseUrl)
@@ -47,8 +48,8 @@ func Request(configPath string) {
 	var root Root
 	if err := json.Unmarshal(result, &root); err != nil {
 	}
-	if err := convertTemplate(&root, config.TemplatePath) ; err != nil {
-    }
+	if err := convertTemplate(&root, config.TemplatePath); err != nil {
+	}
 }
 
 /** */
@@ -66,16 +67,16 @@ func existFile(tpath string) bool {
 }
 
 /** */
-func convertTemplate(root *Root, tpath string) error{
-    if !existFile(tpath) {
-        return fmt.Errorf("file not exist %s",tpath)
-    }
+func convertTemplate(root *Root, tpath string) error {
+	if !existFile(tpath) {
+		return fmt.Errorf("file not exist %s", tpath)
+	}
 	tmpl := template.Must(template.ParseFiles(tpath))
 	if err := tmpl.Execute(os.Stdout, root); err != nil {
 		log.Fatal(err)
-        return err
+		return err
 	}
-    return nil
+	return nil
 }
 
 /** */
