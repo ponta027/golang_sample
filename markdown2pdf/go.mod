@@ -10,4 +10,3 @@ require (
 	markdown2pdf/md2pdf v1.0.0
 )
 
-

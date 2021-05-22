@@ -2,6 +2,8 @@ NAME := md2pdf
 VERSION := $(gobump show -r )
 REVISION := $(shell git rev-parse --short HEAD)
 LDFLAGS := "-X main.revision=$(REVISION)"
+GOOS := linux
+GOARGCH := arm64
 
 ## build binary 
 ## ex. cross compile  GOOS=linux GOARCH=arm64 make build
