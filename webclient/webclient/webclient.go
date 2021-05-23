@@ -1,18 +1,11 @@
 package webclient
 
 import (
-	"encoding/json"
-	"fmt"
-	"io/ioutil"
+	"errors"
 	"log"
 	"net/http"
 	"strings"
 )
-
-type Ping struct {
-	Status int
-	Result string
-}
 
 /**
 * https://golang.org/pkg/net/http/
@@ -20,50 +13,50 @@ type Ping struct {
 func Get(url string, query string) error {
 	log.Printf("Start Request:%s", url)
 
-	client := &http.Client{}
-	req, err := http.NewRequest("GET", url, nil)
+	resp, err := request("GET", url, query)
 	if err != nil {
 		return err
 	}
 
-	resp, err := client.Do(req)
-	if err != nil {
-		return err
-	}
 	defer resp.Body.Close()
-	headers := resp.Header
-	tmp := getHeader("Content-Type", &headers)
-	if strings.Index(tmp, "application/json") > -1 {
-		fmt.Printf("JSON")
-	}
-	data, err := ioutil.ReadAll(resp.Body)
-	if err != nil {
-		return err
-	}
-
-	root := parseJson(&data)
-	log.Printf("{Status:%d,Result=%s}", root.Status, root.Result)
-
-	//	verboseHeader(&headers)
+	parseResponse(resp)
 	return nil
 }
 
-func parseJson(data *[]byte) Ping {
-	var root Ping
-	if err := json.Unmarshal(*data, &root); err != nil {
-		log.Fatal(err)
+func Post(urlpath string, query string) error {
+	log.Printf("Start Post Request:%s", urlpath)
+	resp, err := request("POST", urlpath, query)
+	if err != nil {
+		return err
 	}
-	return root
+
+	if err != nil {
+		log.Printf(err.Error())
+		return err
+	}
+	defer resp.Body.Close()
+
+	parseResponse(resp)
+	return nil
+
 }
 
-func verboseHeader(headers *http.Header) {
-	for i, v := range *headers {
-		log.Printf("key:%s", i)
-		for _, k := range v {
-			log.Printf("value:%s", k)
-		}
+func request(method string, urlPath string, query string) (*http.Response, error) {
+	var req *http.Request = nil
+	var err error
+	client := &http.Client{}
+	switch method {
+	case "GET":
+		req, err = http.NewRequest("GET", urlPath, nil)
+	case "POST":
+		req, err = http.NewRequest("POST", urlPath, strings.NewReader(query))
+	default:
+		return nil, errors.New("Not Allowed Method")
 	}
-}
-func getHeader(name string, header *http.Header) string {
-	return header.Get(name)
+
+	if err != nil {
+		return nil, err
+	}
+
+	return client.Do(req)
 }

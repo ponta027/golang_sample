@@ -30,8 +30,9 @@ bin/%: cmd/%/main.go
 	go build -ldflags $(LDFLAGS) -o $@ $<
 
 test: 
-	go test -v ponta027.dip.jp/rest -coverprofile=artifact/cover.out	¥
-	go tool cover -html=artifact/cover.out -o artifact/cover.html
+	go test -v webclient/webclient
+#	go test -v webclient -coverprofile=artifact/cover.out	¥
+#	go tool cover -html=artifact/cover.out -o artifact/cover.html
 
 
 ## show help
